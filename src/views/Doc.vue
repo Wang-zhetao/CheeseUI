@@ -68,7 +68,7 @@ $bg2: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   }
 }
 aside {
-  background: lightblue;
+  background: lightablue;
   width: 150px;
   padding: 16px;
   position: fixed;
@@ -86,6 +86,8 @@ aside {
   }
 }
 main {
-  overflow: auto;
+  flex-grow: 1;
+  padding: 16px;
+  background: white;
 }
 </style> 
