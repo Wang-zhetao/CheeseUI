@@ -20,13 +20,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$bg: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 .banner {
   padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: lightgreen;
+  background: $bg;
   > .actions {
     padding: 8px 0;
     a {
