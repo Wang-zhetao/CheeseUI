@@ -39,6 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$bg2: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 .layout {
   display: flex;
   flex-direction: column;
@@ -63,7 +64,7 @@ export default {
   > main {
     flex-grow: 1;
     padding: 16px;
-    background: lightgreen;
+    background: $bg2;
   }
 }
 aside {
