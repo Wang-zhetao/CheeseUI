@@ -1,10 +1,11 @@
 <template>
-  <button class="i-button" :class="{ [`i-theme-${theme}`]: theme }">
+  <button class="i-button" :class="classes">
     <slot />
   </button>
 </template>
 
 <script lang="ts">
+import { computed } from 'vue';
 export default {
   inheritAttrs: false,
   props: {
@@ -12,7 +13,21 @@ export default {
       type: String,
       default: "button",
     },
+    size:{
+        type:String,
+        default:"normal",
+    },
   },
+  setup(props){
+      const {theme,size}  = props;
+      const classes = computed(()=>{
+          return {
+              [`i-theme-${theme}`]:theme,
+              [`i-size-${size}`]:size,
+          };
+      });
+      return{classes}
+  }
 };
 </script>
 
@@ -66,6 +81,18 @@ $radius: 4px;
     &:hover,
     &:focus {
       background: darken(white, 5%);
+    }
+  }
+  &.i-theme-button{
+    &.gulu-size-big{
+      font-size: 24px;
+      height: 48px;
+      padding: 0 16px
+    }
+    &.i-size-small{
+      font-size: 12px;
+      height: 20px;
+      padding: 0 4px;
     }
   }
 }
