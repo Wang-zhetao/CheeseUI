@@ -1,5 +1,5 @@
 <template>
-  <button class="i-button" :class="classes">
+  <button class="i-button" :class="classes" :disabled="disabled">
     <slot />
   </button>
 </template>
@@ -20,6 +20,10 @@ export default {
     level:{
         type:String,
         default:"normal",
+    },
+    disabled:{
+        type:Boolean,
+        default:false
     },
   },
   setup(props){
@@ -44,6 +48,7 @@ $blue: #40a9ff;
 $radius: 4px;
 $red:red;
 $bg:background;
+$grey:grey;
 .i-button {
   box-sizing: border-box;
   height: $h;
@@ -58,7 +63,7 @@ $bg:background;
   border: 1px solid $border-color;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
-  transition: $bg 250ms;
+  transition: $bg 250ms;    
   & + & {
     margin-left: 8px;
   }
@@ -148,6 +153,20 @@ $bg:background;
       }
     }
   }
-
+  &.i-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+  &.i-theme-link, &.gulu-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+    }
+  }
 }
 </style>
