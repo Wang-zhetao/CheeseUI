@@ -1,4 +1,4 @@
-<template>
+<template v-if="visible">
     <div class="dialog-overlay"></div>
     <div class="dialog-wrapper">
         <div class="i-dialog">
@@ -21,6 +21,12 @@
 import Buuton from '../lib/Button.vue'
     export default {
         components:{Buuton},
+        props:{
+            visible:{
+                type:Boolean,
+                default:false
+            },
+        }
     }
 </script>
 
