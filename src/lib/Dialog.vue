@@ -1,33 +1,69 @@
 <template v-if="visible">
-    <div class="dialog-overlay"></div>
-    <div class="dialog-wrapper">
-        <div class="i-dialog">
-        <header>标题 
-            <span class="i-dilog-close"> </span>
-        </header>
-        <main>
-            <p>第一行字</p>
-            <p>第二行字</p>
-        </main>
-        <footer>
-            <Button lvel="main">OK</Button>
-            <Button>Cancel</Button>
-        </footer>
-        </div>
+  <div class="dialog-overlay" @click="onClickOverlay"></div>
+  <div class="dialog-wrapper">
+    <div class="i-dialog">
+      <header>
+        标题
+        <span @click="close" class="i-dilog-close"> </span>
+      </header>
+      <main>
+        <p>第一行字</p>
+        <p>第二行字</p>
+      </main>
+      <footer>
+        <Button lvel="main" @click="ok">OK</Button>
+        <Button @click="cancel">Cancel</Button>
+      </footer>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
-import Buuton from '../lib/Button.vue'
-    export default {
-        components:{Buuton},
-        props:{
-            visible:{
-                type:Boolean,
-                default:false
-            },
-        }
-    }
+import Buuton from "../lib/Button.vue";
+export default {
+  props: {
+    visible: {
+      type: Boolean,
+      default: false,
+    },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true,
+    },
+    ok: {
+      type: Function,
+    },
+    cancel: {
+      type: Function,
+    },
+  },
+  components: { Buuton },
+  setup(props, context) {
+    const close = () => {
+      context.emit("update:visible", false);
+    };
+    const onClickOverlay = () => {
+      if (props.closeOnClickOverlay) {
+        close();
+      }
+    };
+    const ok = () => {
+      if (props.ok?.() !== false) {
+        close();
+      }
+    };
+    const cancel = () => {
+      context.emit("cancel");
+      close();
+    };
+    return {
+      close,
+      onClickOverlay,
+      ok,
+      cancel,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +91,7 @@ $border-color: #d9d9d9;
     transform: translate(-50%, -50%);
     z-index: 11;
   }
-  >header {
+  > header {
     padding: 12px 16px;
     border-bottom: 1px solid $border-color;
     display: flex;
@@ -63,10 +99,10 @@ $border-color: #d9d9d9;
     justify-content: space-between;
     font-size: 20px;
   }
-  >main {
+  > main {
     padding: 12px 16px;
   }
-  >footer {
+  > footer {
     border-top: 1px solid $border-color;
     padding: 12px 16px;
     text-align: right;
@@ -79,7 +115,7 @@ $border-color: #d9d9d9;
     cursor: pointer;
     &::before,
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       height: 1px;
       background: black;
