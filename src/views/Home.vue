@@ -39,6 +39,7 @@ $color: #007974;
 $bg: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 .topnavAndBanner {
   background:$bg;
+  clip-path: ellipse(80% 60% at 50% 40%);
 }
 .features {
   >svg {
