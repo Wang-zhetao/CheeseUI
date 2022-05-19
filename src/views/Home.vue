@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="topnavAndBanner">
     <Topnav />
     <div class="banner">
       <h1>芝士UI</h1>
@@ -21,13 +21,15 @@ export default {
 
 <style lang="scss" scoped>
 $bg: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+.topnavAndBanner {
+  background:$bg;
+}
 .banner {
   padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: $bg;
   > .actions {
     padding: 8px 0;
     a {
