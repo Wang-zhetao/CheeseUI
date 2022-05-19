@@ -18,7 +18,6 @@
     </div>
   </Teleport>
 </template>
-</template>
 
 <script lang="ts">
 import Button from "../lib/Button.vue";
