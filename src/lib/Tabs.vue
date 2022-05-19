@@ -1,9 +1,9 @@
 <template>
   <div class="i-tabs">
-    <div class="i-tabs-nav">
-      <div class="i-tabs-nav-item" v-for="(t, index) in titles" @click="select(t)" :class="{ selected: t === selected }"
-        :key="index">{{ t }}</div>
-      <div class="i-tabs-nav-indicator"></div>
+    <div class="i-tabs-nav" ref="container">
+      <div class="i-tabs-nav-item" v-for="(t, index) in titles" :ref="el => { if (el) navItems[index] = el }"
+        @click="select(t)" :class="{ selected: t === selected }" :key="index">{{ t }}</div>
+      <div class="i-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="i-tabs-content">
       <component class="i-tabs-content-item" :class="{ selected: c.props.title === selected }" v-for="c in defaults"
@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Tab from './Tab.vue'
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUpdated } from 'vue'
 export default {
   props: {
     selected: {
@@ -22,6 +22,28 @@ export default {
     }
   },
   setup(props, context) {
+    const navItems = ref<HTMLDivElement[]>([])
+    const indicator = ref<HTMLDivElement>(null)
+    const container = ref<HTMLDivElement>(null)
+    const x = () => {
+      const divs = navItems.value
+      const result = divs.filter(div => div.classList.contains('selected'))[0]
+      console.log(result)
+      const {
+        width
+      } = result.getBoundingClientRect()
+      indicator.value.style.width = width + 'px'
+      const {
+        left: left1
+      } = container.value.getBoundingClientRect()
+      const {
+        left: left2
+      } = result.getBoundingClientRect()
+      const left = left2 - left1
+      indicator.value.style.left = left + 'px'
+    }
+    onMounted(x)
+    onUpdated(x)
     const defaults = context.slots.default()
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
@@ -44,7 +66,10 @@ export default {
       defaults,
       titles,
       current,
-      select
+      select,
+      navItems,
+      indicator,
+      container
     }
   }
 }
@@ -83,6 +108,7 @@ $border-color: #d9d9d9;
       left: 0;
       bottom: -1px;
       width: 100px;
+      transition: all 250ms;
     }
   }
 
