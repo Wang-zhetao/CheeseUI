@@ -53,6 +53,9 @@ export default {
 <style lang="scss" scoped>
 $bg2: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 $bg:  linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+.router-link-active{
+  text-decoration: underline;
+}
 .layout {
   display: flex;
   flex-direction: column;
