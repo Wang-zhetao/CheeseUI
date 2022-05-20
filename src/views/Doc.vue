@@ -68,7 +68,7 @@ $bg2: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   }
 }
 aside {
-  background: lightablue;
+  background: black;
   width: 150px;
   padding: 16px;
   position: fixed;
@@ -82,6 +82,7 @@ aside {
   > ol {
     > li {
       padding: 4px 0;
+      color: #fff;
     }
   }
 }
