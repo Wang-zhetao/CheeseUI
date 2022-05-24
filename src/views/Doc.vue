@@ -53,6 +53,7 @@ export default {
 <style lang="scss" scoped>
 $bg2: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 $bg:  linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+$aside-index:10;
 .layout {
   display: flex;
   flex-direction: column;
@@ -89,6 +90,7 @@ aside {
   left: 0;
   padding-top: 70px;
   height: 100%;
+  z-index: $aside-index;
   > h2 {
     margin-bottom: 4px;
     padding: 0 16px;
