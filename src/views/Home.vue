@@ -11,7 +11,7 @@
       </p>
     </div>
   </div>
-  <ul style="display: flex; justify-content: center;">
+  <ul style="display: flex; justify-content: space-between; margin-top: 70px;">
       <li>
         <svg>
           <use xlink:href="#icon-Vue"></use>
@@ -74,7 +74,7 @@ $bg: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
       }
     }
   }
-  >ul {
+  > ul {
     display: flex;
     flex-wrap: wrap;
     >li {
