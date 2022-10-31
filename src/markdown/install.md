@@ -12,4 +12,10 @@ npm install cheese-ui
 yarn add cheese-ui
 ```
 
+或 
+
+```
+pnpm install cheese-ui
+```
+
 下一节：[开始使用](#/doc/get-started)
