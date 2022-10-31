@@ -11,7 +11,7 @@
       </p>
     </div>
   </div>
-  <ul>
+  <ul style="display: flex; justify-content: center;">
       <li>
         <svg>
           <use xlink:href="#icon-Vue"></use>
